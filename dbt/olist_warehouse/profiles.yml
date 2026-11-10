@@ -1,0 +1,12 @@
+olist_warehouse:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('WAREHOUSE_HOST', 'localhost') }}"
+      user: "{{ env_var('WAREHOUSE_USER', 'olist') }}"
+      password: "{{ env_var('WAREHOUSE_PASSWORD', 'olist_local_password') }}"
+      port: "{{ env_var('WAREHOUSE_PORT', '5433') | int }}"
+      dbname: "{{ env_var('WAREHOUSE_DB', 'olist') }}"
+      schema: public
+      threads: 4

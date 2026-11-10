@@ -1,0 +1,37 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Airflow
+.airflow/
+logs/
+airflow.db/
+
+# dbt generated files
+target/
+dbt_packages/
+dbt/olist_warehouse/logs/
+dbt/olist_warehouse/target/
+
+# Data files
+data/raw/*
+!data/raw/.gitkeep
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary files
+*.log
+*.tmp
+dbt/olist_warehouse/.user.yml

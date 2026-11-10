@@ -1,0 +1,44 @@
+version: 2
+models:
+  - name: dim_customers
+    columns:
+      - name: customer_id
+        tests: [not_null, unique]
+  - name: dim_products
+    columns:
+      - name: product_id
+        tests: [not_null, unique]
+  - name: dim_sellers
+    columns:
+      - name: seller_id
+        tests: [not_null, unique]
+  - name: fct_orders
+    columns:
+      - name: order_id
+        tests: [not_null, unique]
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_id
+      - name: order_status
+        tests:
+          - accepted_values:
+              values: ['delivered', 'shipped', 'canceled', 'unavailable', 'invoiced', 'processing', 'created', 'approved']
+      - name: merchandise_amount
+        tests: [not_null]
+      - name: item_count
+        tests: [not_null]
+  - name: fct_order_items
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fct_orders')
+              field: order_id
+      - name: item_price
+        tests: [not_null]
+      - name: freight_value
+        tests: [not_null]
